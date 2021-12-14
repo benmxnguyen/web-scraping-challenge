@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Mission to Mars!</title>
+  </head>
+
+<body>
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+  </div>
+
+  <div>
+    <h1>Today's Featured Image</h1>
+    <img src="{{ mars_data.featured_image }}" alt="featured image">
+  </div>
+  <div>
+    <h3>The Latest News</h3>
+    <h4> {{ mars_data.articles[0]['headline'] }} </h4>
+      <p> {{ mars_data.articles[0]['teaser_body'] }} </p>
+  </div>
+
+    <div>
+    <h3>Mars Table</h3>
+    {{ mars_data.mars_table | safe }}
+    </div>
+
+    <div class="container-fluid">
+      <h3 style="text-align: center;">Mars Hemispheres</h3> <hr>
+        <div  class=card-deck>
+          {% for hemi in mars_data.mars_hemispheres %}
+          <div class="col">
+            <div class="card" style="width: 20rem;">
+              <img class="card-img-top" src="{{ hemi.image_url }}" alt="{{ hemi.hemisphere }}" style="display: inline;">
+                <div class="card-body">
+                  <h3 class="card-text">{{ hemi.hemisphere }}</h3>
+                </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>
